@@ -17,13 +17,11 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 
-enum class AsteroidStatus { LOADING, DONE, ERROR }
 
 class MainViewModel(application: Application) : AndroidViewModel(application)  {
     private val database = getInstance(application)
     private val filter = MutableLiveData(AsteroidApiFilter.TODAY)
     private val repository = Repository(database)
-  //  private val asteroidFilterType = MutableLiveData<AsteroidApiFilter>()
     private val _image = MutableLiveData<PictureOfDay>()
     val image: LiveData<PictureOfDay>
         get() = _image
@@ -72,7 +70,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application)  {
                     ServiceApi.NetworkService.AsteroidsService.getPictureOfTheDay(API_KEY)
                 )
             } catch (err: Exception) {
-                Log.e("refreshPictureOfDay", err.printStackTrace().toString())
             }
         }
     }

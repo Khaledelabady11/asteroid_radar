@@ -13,11 +13,10 @@ class RefreshDataWork(appContext: Context, params: WorkerParameters): CoroutineW
     }
     override suspend fun doWork(): Result {
         val database = getInstance(applicationContext)
-        val asteroidRepository = Repository(database)
+        val repository = Repository(database)
 
         return try {
-            asteroidRepository.refreshAsteroids()
-
+            repository.refreshAsteroids()
             Result.success()
         } catch (e: HttpException) {
             Result.retry()

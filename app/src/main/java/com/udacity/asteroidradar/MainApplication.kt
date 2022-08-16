@@ -1,7 +1,6 @@
 package com.udacity.asteroidradar
 
 import android.app.Application
-import androidx.constraintlayout.widget.Constraints
 import androidx.work.ExistingPeriodicWorkPolicy
 import androidx.work.NetworkType
 import androidx.work.PeriodicWorkRequestBuilder
@@ -22,17 +21,17 @@ class MainApplication: Application() {
     }
 
     private fun delayInit() = applicationScope.launch {
-        setupRecurringWorker()
+        RecurringWorker()
     }
 
-    private fun setupRecurringWorker() {
-        val constraint = androidx.work.Constraints.Builder()
+    private fun RecurringWorker() {
+        val constraints = androidx.work.Constraints.Builder()
             .setRequiredNetworkType(NetworkType.METERED)
             .setRequiresCharging(true)
             .build()
 
         val repeatingRequest = PeriodicWorkRequestBuilder<RefreshDataWork>(1, TimeUnit.DAYS)
-            .setConstraints(constraint)
+            .setConstraints(constraints)
             .build()
         WorkManager.getInstance().enqueueUniquePeriodicWork(
             RefreshDataWork.WORKER_NAME,
