@@ -1,4 +1,4 @@
-package com.udacity.asteroidradar.api
+package com.udacity.asteroidradar.Network
 
 import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.Constants

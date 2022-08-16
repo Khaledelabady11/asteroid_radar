@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools">
+
+<data>
+
+    <variable
+        name="asteroid"
+        type="com.udacity.asteroidradar.Asteroid" />
+    <variable name="clickListener"
+        type="com.udacity.asteroidradar.main.OnClickListener">
+
+    </variable>
+</data>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#080909"
+    android:paddingVertical="8dp"
+    android:onClick="@{() -> clickListener.onClick(asteroid)}">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/asteroid_status"
+        app:layout_constraintHorizontal_bias="0.153"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+        <TextView
+            android:id="@+id/asteroid_code_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:contentDescription="@{`Codename of the asteroid is ` + asteroid.codename}"
+            android:text="@{asteroid.codename}"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Title" />
+        <TextView
+            android:id="@+id/close_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="@{`Close approach date: ` + asteroid.closeApproachDate}"
+            android:hint="@string/close_approach_data_title"
+            android:text="@{asteroid.closeApproachDate}"
+            android:textColor="@color/default_text_color"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/asteroid_code_name"
+            app:layout_constraintTop_toBottomOf="@+id/asteroid_code_name"
+            tools:text="@string/close_approach_data_title" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/asteroid_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="45dp"
+        android:layout_marginEnd="56dp"
+        android:contentDescription="@{asteroid.potentiallyHazardous ? @string/potentially_hazardous : @string/not_hazardous}"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:statusIcon="@{asteroid.potentiallyHazardous}"
+        tools:srcCompat="@drawable/ic_status_potentially_hazardous" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
