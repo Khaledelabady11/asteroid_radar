@@ -22,18 +22,14 @@ class MainAsteroidAdapter(val clickListener: OnClickListener) :
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AsteroidViewHolder {
-        return AsteroidViewHolder(AsteroidItemBinding.inflate(LayoutInflater.from(parent.context),
-            parent,
-            false))
-
+        return AsteroidViewHolder(AsteroidItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: AsteroidViewHolder, position: Int) {
         holder.bind(getItem(position), clickListener)
     }
 
-    class AsteroidViewHolder(var binding: AsteroidItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    class AsteroidViewHolder(var binding: AsteroidItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Asteroid, clickListener: OnClickListener) {
             binding.asteroid = item
             binding.clickListener = clickListener
