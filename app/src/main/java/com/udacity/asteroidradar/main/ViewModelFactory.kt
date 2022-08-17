@@ -12,6 +12,6 @@ import java.lang.IllegalArgumentException
         if (modelClass.isAssignableFrom(MainViewModel::class.java)){
             return MainViewModel(app) as T
         }
-        throw Exception("Cannot find View Model class")
+        throw Exception("error")
     }
 }

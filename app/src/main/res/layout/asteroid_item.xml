@@ -9,6 +9,7 @@ xmlns:tools="http://schemas.android.com/tools">
     <variable
         name="asteroid"
         type="com.udacity.asteroidradar.Asteroid" />
+
     <variable name="clickListener"
         type="com.udacity.asteroidradar.main.OnClickListener">
 
@@ -38,7 +39,6 @@ xmlns:tools="http://schemas.android.com/tools">
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:contentDescription="@{`Codename of the asteroid is ` + asteroid.codename}"
             android:text="@{asteroid.codename}"
             android:textColor="#FFFFFF"
             android:textSize="18sp"
@@ -51,7 +51,6 @@ xmlns:tools="http://schemas.android.com/tools">
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="16dp"
-            android:contentDescription="@{`Close approach date: ` + asteroid.closeApproachDate}"
             android:hint="@string/close_approach_data_title"
             android:text="@{asteroid.closeApproachDate}"
             android:textColor="@color/default_text_color"
@@ -69,7 +68,6 @@ xmlns:tools="http://schemas.android.com/tools">
         android:layout_height="wrap_content"
         android:layout_margin="45dp"
         android:layout_marginEnd="56dp"
-        android:contentDescription="@{asteroid.potentiallyHazardous ? @string/potentially_hazardous : @string/not_hazardous}"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"

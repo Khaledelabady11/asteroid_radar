@@ -18,6 +18,8 @@ interface Dao {
 
     @Query("SELECT * FROM databaseasteroid WHERE closeApproachDate BETWEEN :startDate AND :endDate ORDER BY closeApproachDate DESC")
     fun getWeek(startDate:String,endDate:String):LiveData<List<DatabaseAsteroid>>
+
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(vararg asteroids: DatabaseAsteroid)
 }

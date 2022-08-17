@@ -8,7 +8,7 @@ import androidx.lifecycle.*
 import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.Constants.API_KEY
 import com.udacity.asteroidradar.Network.AsteroidApiFilter
-import com.udacity.asteroidradar.Network.ServiceApi
+import com.udacity.asteroidradar.Network.NetworkService
 import com.udacity.asteroidradar.PictureOfDay
 import com.udacity.asteroidradar.Room.getInstance
 import com.udacity.asteroidradar.repository.Repository
@@ -52,6 +52,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application)  {
     val goToDetails: MutableLiveData<Asteroid?>
         get() = _goToDetails
 
+    fun changeFilter(filter: AsteroidApiFilter) {
+        this.filter.value = filter
+    }
 
     fun showAsteroidDetails(asteroid: Asteroid) {
         _goToDetails.value = asteroid
@@ -60,14 +63,12 @@ class MainViewModel(application: Application) : AndroidViewModel(application)  {
     fun showAsteroidDetailsComplete() {
         _goToDetails.value = null
     }
-    fun changeFilter(filter: AsteroidApiFilter) {
-        this.filter.value = filter
-    }
+
     private fun PictureOfDay() = viewModelScope.launch {
         withContext(Dispatchers.IO) {
             try {
                 _image.postValue(
-                    ServiceApi.NetworkService.AsteroidsService.getPictureOfTheDay(API_KEY)
+                    NetworkService.AsteroidsService.getPictureOfTheDay(API_KEY)
                 )
             } catch (err: Exception) {
             }

@@ -17,9 +17,6 @@ import java.util.concurrent.TimeUnit
 
 enum class AsteroidApiFilter { TODAY, WEEK, SAVED }
 
-class ServiceApi {
-
-
 
 interface AsteroidService{
     @GET("neo/rest/v1/feed")
@@ -50,5 +47,4 @@ object NetworkService {
 
     val AsteroidsService: AsteroidService by lazy { retrofit.create(AsteroidService::class.java) }
 
-}
 }
