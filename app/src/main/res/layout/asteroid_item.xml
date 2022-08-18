@@ -71,6 +71,7 @@ xmlns:tools="http://schemas.android.com/tools">
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@{asteroid.codename}"
         app:statusIcon="@{asteroid.potentiallyHazardous}"
         tools:srcCompat="@drawable/ic_status_potentially_hazardous" />
 </androidx.constraintlayout.widget.ConstraintLayout>

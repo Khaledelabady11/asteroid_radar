@@ -6,8 +6,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.Constants.API_KEY
-import com.udacity.asteroidradar.Network.NetworkService
-import com.udacity.asteroidradar.Network.parseAsteroidsJsonResult
+import com.udacity.asteroidradar.network.NetworkService
+import com.udacity.asteroidradar.network.parseAsteroidsJsonResult
 import com.udacity.asteroidradar.Room.AsteroidsDatabase
 import com.udacity.asteroidradar.Room.asDatabaseModel
 import com.udacity.asteroidradar.Room.asDomainModel
@@ -15,7 +15,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
 import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 
 class Repository(private val database: AsteroidsDatabase) {
     @RequiresApi(Build.VERSION_CODES.O)
@@ -30,16 +29,15 @@ class Repository(private val database: AsteroidsDatabase) {
 
 
     @RequiresApi(Build.VERSION_CODES.O)
-    val todayAsteroid:LiveData<List<Asteroid>> = Transformations.map(database.AsteroidsDao.getToday(start.format(
-        DateTimeFormatter.ISO_DATE))){
+    val todayAsteroid:LiveData<List<Asteroid>> = Transformations.map(database.AsteroidsDao.getToday(start.toString())){
         it.asDomainModel()
     }
 
 
     @RequiresApi(Build.VERSION_CODES.O)
     val weeklyAsteroid:LiveData<List<Asteroid>> = Transformations.map(database.AsteroidsDao.getWeek(
-        start.format(DateTimeFormatter.ISO_DATE),
-        end.format(DateTimeFormatter.ISO_DATE)
+        start.toString(),
+        end.toString()
     )){
         it.asDomainModel()
     }
